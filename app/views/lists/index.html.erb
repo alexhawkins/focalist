@@ -1,0 +1,10 @@
+<h1>All Lists</h1>
+<% @lists.each do |list| %>
+ <div class="media">
+    <div class="media-body">
+      <h4 class="media-heading">
+        <%= link_to list.name, list %>
+      </h4>
+    </div>
+  </div>
+<% end %>
