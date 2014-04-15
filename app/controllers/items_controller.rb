@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
     @list = List.find(params[:list_id])
     @items = @list.items
 
-    @item = @items.build(item_params) 
+    @item = current_user.items.build(item_params) 
 
 
     if @item.save
