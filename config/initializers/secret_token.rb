@@ -9,4 +9,8 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
+<<<<<<< HEAD
 Focalist::Application.config.secret_key_base = '76cdb011d8437486a92adf698e8bab7bff83e249fd5ee26641c0a9add9800f2904320719da581c059079f71bd5b60e2068761d6541be12cb94591147e675d170'
+=======
+Focalist::Application.config.secret_key_base = 'b76f971ee286cdeb7b09c48e5f602e115bf4032c41de6e3f43633e4d5ab4f4f84b12fb9a4a87c560444a91a8195eb0a08afde21fc9c876ca4ad9857388684444'
+>>>>>>> a42fc478dffd6b28fc00a8ac8ec9de38404f0249

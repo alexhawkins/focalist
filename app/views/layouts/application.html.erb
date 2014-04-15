@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Focalist</title>
+<<<<<<< HEAD
   <%= stylesheet_link_tag    "application", media: "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -48,4 +49,15 @@
 
     </div>
   </body>
+=======
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= yield %>
+
+</body>
+>>>>>>> a42fc478dffd6b28fc00a8ac8ec9de38404f0249
 </html>
