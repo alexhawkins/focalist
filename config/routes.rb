@@ -1,7 +1,8 @@
 Focalist::Application.routes.draw do
  
+  devise_for :users
  resources :lists
  resources :items
- root to: 'items#index'
+ root to: 'lists#index'
 
 end
