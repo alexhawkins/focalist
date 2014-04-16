@@ -1,18 +1,29 @@
 class ListsController < ApplicationController
   def index
     @lists = List.all
+    #authorize @lists
   end
 
   def show
     @list = List.find(params[:id])
+    @items = current_user.items.where(list_id: @list.id) #create a scope for incomplete and complete
+    #@completed_items = current_user.items.where(list_id: @list.id).completed
+    # @items = current_user.items.incomplete.for_list(@list)
+    @item = Item.new
   end
 
   def new
     @list = List.new
+    # authorize() will check the policy on new list resources via Pundit. 
+    # If it's satisfied (in this case, if a user is present), 
+    # it'll let the rendering continue. If not (if no user is present),
+    # it'll throw an exception.
+    authorize @list
   end
 
   def create
     @list = current_user.lists.build(list_params)
+    authorize @list
     if @list.save
       redirect_to @list, notice: 'Your new LIST was saved'
     else

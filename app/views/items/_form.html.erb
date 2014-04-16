@@ -1,9 +1,9 @@
 
-    <%= form_for [item] do |f| %>
-      <div class="form-group">
-        <%= f.text_field :description, class: 'form-control', placeholder: 'Add an "Item" in your Inbox' %>
-      </div>
-      <div class="form-group">
-        <%= f.submit 'Save', class: 'btn btn-success' %>
-      </div>
+    <%= form_for [list, item] do |f| %>
+    <div class="form-group">
+      <%= f.text_field :description, class: 'form-control', placeholder: 'Add an "Item" in your Inbox' %>
+    </div>
+    <div class="form-group">
+      <%= f.submit 'Save', class: 'btn btn-success hide' %>
+    </div>
     <% end %>

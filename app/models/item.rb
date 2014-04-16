@@ -3,6 +3,7 @@ class Item < ActiveRecord::Base
   # associated with the given item.
   belongs_to :list
   belongs_to :user
+  validates :user, presence: true
 
   default_scope { order('created_at DESC') }
 end

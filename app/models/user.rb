@@ -7,4 +7,7 @@ class User < ActiveRecord::Base
   has_many :lists
   has_many :items
 
+  def role?(base_role)
+    role == base_role.to_s
+  end
 end

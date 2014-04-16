@@ -3,10 +3,12 @@
     <h1 class="page-header"><%= @list.name %>
       <small> |<%= link_to " Edit", edit_list_path(@list) %></small>
     </h1> 
-
-    <%= @list.items.each do |item| %>
+    <!-- render form to add item -->
+    <%= render partial: 'items/form', locals: { list: @list, item: @item} %>
+    <!-- loop through each item -->
+    <% @items.each do |item| %>
       <h4> <%= item.description %> &raquo; <small>
-           <%= time_ago_in_words(item.created_at) %>
+           <%= time_ago_in_words(item.created_at) %> ago
            </small> </h4>
     <% end %>
   </div>
