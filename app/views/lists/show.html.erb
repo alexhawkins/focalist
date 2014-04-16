@@ -11,5 +11,9 @@
            <%= time_ago_in_words(item.created_at) %> ago
            </small> </h4>
     <% end %>
+    <h2 class="page-header">Completed Items</h2>
+    <% @completed_items.each do |item| %>
+      <h4 class="completed-items"> <%= item.description %> </h4>
+    <% end %>
   </div>
 </div>

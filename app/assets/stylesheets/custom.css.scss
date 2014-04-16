@@ -2,5 +2,11 @@
 
 //hides elements
 .hide {
-  display:none
+  display:none;
+}
+
+//strike through and fade items that are completed
+.completed-items{
+  text-decoration:line-through;
+  color: #999;
 }
