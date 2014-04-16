@@ -10,7 +10,7 @@ class ListsController < ApplicationController
     # @completed_items = current_user.items.where(list_id: @list.id).completed
     # @items = current_user.items.incomplete.for_list(@list)
 
-    # Finall all completed items based on completed scope which will have a :complete database value of true
+    # Show all completed items based on completed scope which will have a :complete database value of true
     @completed_items = @list.items.completed.where(user_id: current_user, list_id: @list.id)
     @item = Item.new
   end

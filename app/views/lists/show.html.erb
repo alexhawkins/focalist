@@ -7,13 +7,20 @@
     <%= render partial: 'items/form', locals: { list: @list, item: @item} %>
     <!-- loop through each item -->
     <% @items.each do |item| %>
-      <h4> <%= item.description %> &raquo; <small>
-           <%= time_ago_in_words(item.created_at) %> ago
-           </small> </h4>
+      <h4> 
+        <%= link_to "[ x ]", [@list, item], method: :delete, class: 'btn btn-xs btn-danger', confirm: 'Are you sure you want to delete this post?' %>
+        <%= item.description %> &raquo; 
+        <small>
+          <%= time_ago_in_words(item.created_at) %> ago
+        </small> 
+      </h4>
     <% end %>
     <h2 class="page-header">Completed Items</h2>
-    <% @completed_items.each do |item| %>
-      <h4 class="completed-items"> <%= item.description %> </h4>
-    <% end %>
+      <% @completed_items.each do |item| %>
+        <h4 class="completed-items"> 
+          <%= link_to "[ x ]", [@list, item], method: :delete, class: 'btn btn-xs btn-danger', confirm: 'Are you sure you want to delete this post?' %>
+          <%= item.description %> 
+        </h4>
+      <% end %>
   </div>
 </div>

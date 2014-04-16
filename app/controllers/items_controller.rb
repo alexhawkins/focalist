@@ -33,14 +33,14 @@ class ItemsController < ApplicationController
 
   def destroy
     @list = List.find(params[:list_id])
-    @item = @list.items.find(params[:id])
+    @item = Item.find(params[:id])
 
-    if @list.destroy
+    if @item.destroy
       flash[:notice] = "Comment was removed."
-      redirect_to items_path
+      redirect_to @list
     else
       flash[:error] = "Comment couldn't be deleted. Try again."
-      redirect_to items_path
+      redirect_to @list
     end
 
   end
