@@ -1,5 +1,6 @@
 
-    <%= form_for [list, item] do |f| %>
+   <!-- Add remote: true to enable Ajax on the form -->
+    <%= form_for [list, item], remote: true do |f| %>
     <div class="form-group">
       <%= f.text_field :description, class: 'form-control', placeholder: 'Add an "Item" in your Inbox' %>
     </div>
