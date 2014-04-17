@@ -3,10 +3,11 @@
         <h4> 
         <%= render partial: 'votes/voter', locals: { list: @list, item: item } %>
           <!-- Notice how we create unique id attributes for each item in a list. We later will use this to add and destroy via Ajax -->
-            <%= link_to "[ x ]", [@list, item], method: :delete, class: 'btn btn-xs btn-danger', remote: true %>
             <%= item.description %> &raquo; 
-            <small>
-              <%= time_ago_in_words(item.created_at) %> ago
-            </small> 
+         
+                <span class="label label-default pull-right">
+                    <%= time_ago_in_words(item.created_at) %> ago
+                </span>
+
         </h4>
     <% end %>

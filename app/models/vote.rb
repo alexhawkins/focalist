@@ -6,7 +6,7 @@ class Vote < ActiveRecord::Base
   validates :value, inclusion: { in: [false, true], message: "%{value} is not a valid vote." }
   
   # we need to update the boolean value of each item after a user votes/checks the item to
-  # be either complete or incomplete. We use the after_save callback  whic h will run
+  # be either complete or incomplete. We use the after_save callback  which will run
   # update_item private method every time a vote is saved. 
   after_save :update_item
 

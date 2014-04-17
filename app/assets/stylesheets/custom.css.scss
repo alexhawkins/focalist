@@ -4,9 +4,27 @@
 .hide {
   display:none;
 }
+//fade completed list items out 
+.fade {
+  opacity: 0.5;
+}
 
 //strike through and fade items that are completed
 .completed-items{
   text-decoration:line-through;
   color: #999;
+}
+//get rid of underline on glyphicon hover items
+.glyphicon {
+  &:hover{
+  text-decoration: none;
+  }
+}
+//change color of stop sign glyphicons
+.glyphicon-remove-circle{
+  margin-left: 5px;
+  color: #CA4242;
+  &:hover{
+    color: #A73737;
+  }
 }
