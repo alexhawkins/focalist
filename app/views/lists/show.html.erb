@@ -5,15 +5,17 @@
     </h1> 
     <!-- render form to add item -->
     <%= render partial: 'items/form', locals: { list: @list, item: @item} %>
-    <!--render list of items automatically using built in Rails functionality-->
+
      <div id='js-items'>
           <%= render @items %>
     </div>
     <h2 class="page-header">Completed Items</h2>
       <% @completed_items.each do |item| %>
         <h4 class="completed-items"> 
-          <%= link_to "[ x ]", [@list, item], method: :delete, class: 'btn btn-xs btn-danger', confirm: 'Are you sure you want to delete this post?' %>
-          <%= item.description %> 
+          <%= render partial: 'votes/voter', locals: { list: @list, item: item } %>
+          <%= link_to "[ x ]", [@list, item], method: :delete, class: 'btn btn-xs btn-danger' %>
+          <%= item.description %>
+
         </h4>
       <% end %>
   </div>

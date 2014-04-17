@@ -54,10 +54,6 @@ class ItemsController < ApplicationController
     end
   end
 
-  def complete
-  end
-
-
   private
 
   def item_params

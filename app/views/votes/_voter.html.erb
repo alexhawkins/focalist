@@ -1,0 +1,8 @@
+<% if policy(Vote.new).create? %>
+  <% if  item.complete %>
+    <%= link_to " ", list_item_incomplete_path(list, item), class: 'glyphicon glyphicon-check' %>
+  <% else %>
+    <%= link_to " ", list_item_complete_path(list, item), class: 'glyphicon glyphicon-unchecked' %>
+  <% end %>
+<% end %>
+

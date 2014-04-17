@@ -1,6 +1,7 @@
     <!-- loop through each item -->
     <%= content_tag :div, id: "item-#{item.id}" do %>
         <h4> 
+        <%= render partial: 'votes/voter', locals: { list: @list, item: item } %>
           <!-- Notice how we create unique id attributes for each item in a list. We later will use this to add and destroy via Ajax -->
             <%= link_to "[ x ]", [@list, item], method: :delete, class: 'btn btn-xs btn-danger', remote: true %>
             <%= item.description %> &raquo; 
