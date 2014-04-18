@@ -6,24 +6,18 @@
     <!-- render form to add item -->
     <%= render partial: 'items/form', locals: { list: @list, item: @item} %>
 
-     <div id='js-items'>
+     <div id='js-items' data-update-url='<%= sort_list_items_url(@list, @item) %>'>
           <%= render @items %>
     </div>
-    <h2 class="page-header">Completed Items</h2>
+    <h2 class="page-header">Completed Items
+       <div class="pull-right"><%= link_to " ", "#", remote: true, class: 'glyphicon glyphicon-check' %>
+       </div>
+    </h2>
+
+      <div id='completed-items'>
       <% @completed_items.each do |item| %>
-        <%= content_tag :div, id: "item-#{item.id}" do %>
-        <h4 class="completed-items"> 
-          <%= render partial: 'votes/voter', locals: { list: @list, item: item } %>
-
-          <%= item.description %>
-
-          <%= link_to " ", [@list, item], method: :delete, class: 'glyphicon glyphicon-remove-circle', remote: true %>
-
-          <span class="label label-default pull-right fade">
-                    <%= time_ago_in_words(item.created_at) %> ago
-          </span>
-        </h4>
-        <% end %>
+        <%= render partial: 'items/completed_item', locals: { list: @list, item: item } %>
       <% end %>
+      </div>
   </div>
 </div>

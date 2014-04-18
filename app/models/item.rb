@@ -7,12 +7,14 @@ class Item < ActiveRecord::Base
   # a votes should not exis without an Item
   has_many :votes, dependent: :destroy
   validates :user, presence: true
-  # set default scope for listed items
-  default_scope { order('created_at DESC') }
+  # scope list items based on creation time
+  scope :created, -> { order('created_at DESC') }
   # scope for list of items that have been checked as completed
   scope :completed, where(complete: true)
   # scope for list of items that have been set to the default :complete = false
   scope :incomplete, where(complete: false)
+  # scope for position items for sortable/draggable lists
+  scope :position, -> { order('position') }
 
   def update_complete
     # checks to see if the Item's :complete attribute is true

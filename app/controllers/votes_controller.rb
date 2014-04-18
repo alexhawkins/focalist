@@ -1,4 +1,5 @@
 class VotesController < ApplicationController
+  respond_to :html, :js
 
   # the setup method will be called before every other method in votes_controller.rb,
   # thus setting the proper instance variables for each vote
@@ -6,12 +7,18 @@ class VotesController < ApplicationController
 
   def complete
     update_vote(false)
-    redirect_to @list
+    respond_to do |format|
+      format.html { redirect_to @list }
+      format.js
+    end    
   end
 
   def incomplete
     update_vote(true)
-    redirect_to @list
+    respond_to do |format|
+      format.html { redirect_to @list }
+      format.js
+    end 
   end
 
   ####################PRIVATE PARTS######################

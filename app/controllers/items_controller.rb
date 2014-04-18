@@ -2,10 +2,6 @@ class ItemsController < ApplicationController
   #enable the controller to be able to respond to html and javascript
   respond_to :html, :js
 
-  def index
-    @items = Item.all
-  end
-
   def new
     @list = List.find(params[:list_id])
     @item = Item.new
@@ -55,10 +51,54 @@ class ItemsController < ApplicationController
     end
   end
 
+  ############COMPLETE/INCOMPLETE ITEM TOGGLE##################
+  def complete
+    toggle # call toggle method to update our database attributes
+
+    # once database updated, take care of Ajax call
+    # if the client wants HTML in response to the complete_item action, we just
+    # redirect them back to the list page that the action was called upon.
+    # However, if the client wants Javascript(format.js), then it is an RJS request
+    # and we render the RJS template associated with the template(in this case, it 
+    # would be complete.js.erb)
+    respond_to do |format|
+      format.html { redirect_to @list }
+      format.js
+    end    
+  end
+
+
+  def incomplete #same as complete method
+    toggle
+    respond_to do |format|
+      format.html { redirect_to @list }
+      # if the client wants Javascript, then it is an RJS request and we render the RJS
+      # template associated with the template, incomplete.js
+      format.js
+    end    
+  end
+
+  # update the sorting position of multiple items at once
+  def sort
+    params[:item].each_with_index do |id, index|
+    Item.where(id: id).update_all({position: index+1})
+    end
+    render nothing: true
+  end
 
   private
 
   def item_params
     params.require(:item).permit(:description)
+  end
+
+  # toggle method sets our Ojbect instance variables,
+  # then calls update_complete method in the item model.
+  # this allows us to toggle between boolean values for the
+  # complete attribute in our database.
+  def toggle
+    @list = List.find(params[:list_id])
+    @item = Item.find(params[:item_id])
+    @item.update_complete
   end
 end
