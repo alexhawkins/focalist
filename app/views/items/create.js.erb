@@ -1,1 +1,3 @@
 $('#js-items').prepend("<%= escape_javascript(render(@item)) %>");
+//refresh/clear the item form
+$('.new_item').html("<%= escape_javascript(render partial: 'items/form', locals: { list: @list, item: @new_item }) %>");

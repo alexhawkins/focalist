@@ -21,6 +21,7 @@ class ItemsController < ApplicationController
     @list = List.find(params[:list_id])
     @item = current_user.items.build(item_params) 
     @item.list = @list
+    @new_item = Item.new
 
     if @item.save
        #flash[:notice] = "Your new ITEM was saved"
@@ -42,10 +43,10 @@ class ItemsController < ApplicationController
     @item = @list.items.find(params[:id])
 
     if @item.destroy
-      #flash[:notice] = "Item was removed."
+      #flash[:notice] = "Comment was removed."
       #redirect_to @list
     else
-      #flash[:error] = "Item couldn't be deleted. Try again."
+      #flash[:error] = "Comment couldn't be deleted. Try again."
       #redirect_to @list
     end
     #this overites the default behavior and instructs the controller to respond via Ajax
@@ -53,6 +54,7 @@ class ItemsController < ApplicationController
      f.html { redirect_to @list }
     end
   end
+
 
   private
 
