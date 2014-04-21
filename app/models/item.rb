@@ -8,6 +8,7 @@ class Item < ActiveRecord::Base
   #has_many :votes, dependent: :destroy
   validates :user, presence: true
   # scope list items based on creation time
+  #default_scope { order('created_at DESC') }
   scope :created, -> { order('created_at DESC') }
   # scope for list of items that have been checked as completed
   scope :completed, where(complete: true)
