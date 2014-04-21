@@ -1,2 +1,3 @@
 $('#item-' +<%= @item.id %>).remove();
 $('#js-items').prepend("<%= escape_javascript(render(@item)) %>");
+$('#completed_items_count').html("(<%= @completed_items_count %>)");

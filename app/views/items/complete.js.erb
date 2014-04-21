@@ -1,2 +1,3 @@
 $('#item-' +<%= @item.id %>).remove();
 $('#completed-items').prepend("<%= escape_javascript(render partial: 'items/completed_item', locals: { list: @list, item: @item}) %>");
+$('#completed_items_count').html("(<%= @completed_items_count %>)");

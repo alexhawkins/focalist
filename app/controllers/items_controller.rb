@@ -39,14 +39,17 @@ class ItemsController < ApplicationController
     @item = @list.items.find(params[:id])
 
     if @item.destroy
-      #flash[:notice] = "Comment was removed."
-      #redirect_to @list
-      #@completed_items_count = @list.items(where: )
+      # flash[:notice] = "Comment was removed."
+      # redirect_to @list
+      # check for the number of completed items after an item is destroyed
+      # so that we can update our complete items count via javascript.
+      # see destroy.js.erb for javascript call
+      @completed_items_count = @list.items.where(complete: true).count
     else
-      #flash[:error] = "Comment couldn't be deleted. Try again."
-      #redirect_to @list
+      # flash[:error] = "Comment couldn't be deleted. Try again."
+      # redirect_to @list
     end
-    #this overites the default behavior and instructs the controller to respond via Ajax
+    # this overites the default behavior and instructs the controller to respond via Ajax
     respond_with(@item) do |f|
      f.html { redirect_to @list }
     end
@@ -55,7 +58,9 @@ class ItemsController < ApplicationController
   ############COMPLETE/INCOMPLETE ITEM TOGGLE##################
   def complete
     toggle # call toggle method to update our database attributes
-
+    # check for the number of completed items after our datbase update
+    # and store that value so that we can call it and update it simultaneously 
+    @completed_items_count = @list.items.where(complete: true).count
     # once database updated, take care of Ajax call
     # if the client wants HTML in response to the complete_item action, we just
     # redirect them back to the list page that the action was called upon.
@@ -71,6 +76,9 @@ class ItemsController < ApplicationController
 
   def incomplete #same as complete method
     toggle
+    # check for the number of completed items after our datbase update
+    # and store that value so that we can call it and update it simultaneously 
+    @completed_items_count = @list.items.where(complete: true).count
     respond_to do |format|
       format.html { redirect_to @list }
       # if the client wants Javascript, then it is an RJS request and we render the RJS
