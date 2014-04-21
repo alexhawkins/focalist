@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   # :confirmable
   has_many :lists
   has_many :items, dependent: :destroy
-  has_many :votes, dependent: :destroy
+  #has_many :votes, dependent: :destroy
 
   def role?(base_role)
     role == base_role.to_s

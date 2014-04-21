@@ -5,7 +5,7 @@ class Item < ActiveRecord::Base
   belongs_to :user
   # an item can have many votes(namely one that is either true or false) and that 
   # a votes should not exis without an Item
-  has_many :votes, dependent: :destroy
+  #has_many :votes, dependent: :destroy
   validates :user, presence: true
   # scope list items based on creation time
   scope :created, -> { order('created_at DESC') }

@@ -50,9 +50,32 @@ class ListsController < ApplicationController
     end
   end
 
+ #######################HIDE AND SHOW COMPLETED ITEMS TOGGLE
+  def hide_list
+    visible
+    respond_to do |format|
+      format.html { redirect_to @list }
+      format.js
+    end    
+  end
+
+  def show_list
+    visible
+    respond_to do |format|
+      format.html { redirect_to @list }
+      format.js
+    end    
+  end
+
+
   private
 
   def list_params
     params.require(:list).permit(:name)
+  end
+
+  def visible
+    @list = List.find(params[:list_id])
+    @list.update_visible
   end
 end

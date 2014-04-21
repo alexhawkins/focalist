@@ -1,5 +1,5 @@
 <%= content_tag :div, id: "item-#{item.id}" do %>
-  <h4 class="completed-items"> 
+  <h4> 
       <%= render partial: 'items/check_state', locals: { list: list, item: item } %>
 
       <%= item.description %>

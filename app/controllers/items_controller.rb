@@ -78,6 +78,7 @@ class ItemsController < ApplicationController
     end    
   end
 
+
   # update the sorting position of multiple items at once
   def sort
     params[:item].each_with_index do |id, index|
@@ -85,6 +86,9 @@ class ItemsController < ApplicationController
     end
     render nothing: true
   end
+  
+  # responds when hide_list is triggered in lists/show and hides completed items
+  # then renders RJS template, hide_list.js
 
   private
 
@@ -101,4 +105,5 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:item_id])
     @item.update_complete
   end
+
 end

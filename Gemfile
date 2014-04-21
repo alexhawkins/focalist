@@ -5,6 +5,7 @@ gem 'rails', '4.0.4'
 
 group :production do
   gem 'pg'
+  gem 'rails_12factor'
 end
 
 group :development do
@@ -49,6 +50,10 @@ end
 
 gem 'devise'
 gem 'pundit'
+
+# use for cron taks like getting rid of database entries that are old
+# use require: false because we don't want to use whenver direclty in the rails application
+gem 'whenever', require: false
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -9,15 +9,16 @@
      <div id='js-items' data-update-url='<%= sort_list_items_url(@list, @item) %>'>
           <%= render @items %>
     </div>
-    <h2 class="page-header">Completed Items
-       <div class="pull-right"><%= link_to " ", "#", remote: true, class: 'glyphicon glyphicon-check' %>
-       </div>
+    <h2 class="page-header">Completed Items (<%= @list.items.where(complete: true).count %>)
+      <%= render partial: 'lists/visible', locals: { list: @list } %>
     </h2>
-
-      <div id='completed-items'>
-      <% @completed_items.each do |item| %>
-        <%= render partial: 'items/completed_item', locals: { list: @list, item: item } %>
-      <% end %>
-      </div>
+    <div id='completed-items'>
+    <!-- Don't show the Completed Items list if the user has toggled it off. 
+         Check our datatabase List attribute :visible and makes sure it's boolean is true 
+         if @list.visible -->
+        <% @completed_items.each do |item| %>
+          <%= render partial: 'items/completed_item', locals: { list: @list, item: item } %>
+        <% end %>
+    </div>
   </div>
 </div>
