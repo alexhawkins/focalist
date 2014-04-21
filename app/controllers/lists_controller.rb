@@ -6,13 +6,13 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
-    # sort items based on incomplete, position and finally created scopes
-    @items = @list.items.incomplete.position.created.where(user_id: current_user, list_id: @list.id) #create a scope for incomplete and complete
+    # sort items based on incomplete scope
+    @items = @list.items.incomplete.where(user_id: current_user, list_id: @list.id) #create a scope for incomplete and complete
     # @completed_items = current_user.items.where(list_id: @list.id).completed
     # @items = current_user.items.incomplete.for_list(@list)
 
     # Show all completed items based on completed scope which will have a :complete database value of true
-    @completed_items = @list.items.completed.created.where(user_id: current_user, list_id: @list.id)
+    @completed_items = @list.items.completed.where(user_id: current_user, list_id: @list.id)
     @item = Item.new
   end
 

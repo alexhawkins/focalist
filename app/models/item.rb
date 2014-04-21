@@ -9,13 +9,19 @@ class Item < ActiveRecord::Base
   validates :user, presence: true
   # scope list items based on creation time
   #default_scope { order('created_at DESC') }
-  scope :created, -> { order('created_at DESC') }
   # scope for list of items that have been checked as completed
-  scope :completed, where(complete: true)
-  # scope for list of items that have been set to the default :complete = false
-  scope :incomplete, where(complete: false)
-  # scope for position items for sortable/draggable lists
   scope :position, -> { order('position') }
+  scope :created, -> { order('created_at DESC') }
+
+  # scope for list of items that have been set to the default :complete = true
+  # Chain created scope within completed scope
+  scope :completed, -> { created.where(complete: true) }
+  # scope for list of items that have been set to the default :complete = false
+  # Chain position and created scope within incomplete scope
+  scope :incomplete, -> { position.created.where(complete: false) }
+  # scope for position items for sortable/draggable lists
+
+ 
 
   def update_complete
     # checks to see if the Item's :complete attribute is true
