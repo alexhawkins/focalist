@@ -41,6 +41,7 @@ class ItemsController < ApplicationController
     if @item.destroy
       #flash[:notice] = "Comment was removed."
       #redirect_to @list
+      #@completed_items_count = @list.items(where: )
     else
       #flash[:error] = "Comment couldn't be deleted. Try again."
       #redirect_to @list
