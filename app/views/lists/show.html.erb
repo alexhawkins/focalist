@@ -9,7 +9,7 @@
      <div id='js-items' data-update-url='<%= sort_list_items_url(@list, @item) %>'>
           <%= render @items %>
     </div>
-    <h2 class="page-header">Completed Items (<%= @list.items.where(complete: true).count %>)
+    <h2 class="page-header">Completed Items <span id="completed_items_count">(<%= @list.items.where(complete: true).count %>)</span>
       <%= render partial: 'lists/visible', locals: { list: @list } %>
     </h2>
     <div id='completed-items'>

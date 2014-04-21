@@ -1,2 +1,0 @@
-$('#item-' +<%= @item.id %>).remove();
-$('#completed-items').prepend("<%= escape_javascript(render partial: 'items/completed_item', locals: { list: @list, item: @item}) %>");

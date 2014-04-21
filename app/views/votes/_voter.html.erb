@@ -1,6 +1,0 @@
-  <!--Check to see if the complete attribute on the Item ojbect is true -->
-  <% if  item.complete %>
-    <%= link_to " ", list_item_incomplete_path(list, item), remote: true, class: 'glyphicon glyphicon-check' %>
-  <% else %>
-    <%= link_to " ", list_item_complete_path(list, item), remote: true, class: 'glyphicon glyphicon-unchecked' %>
-  <% end %>
